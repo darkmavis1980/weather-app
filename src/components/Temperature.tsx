@@ -1,8 +1,6 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
 import { api } from '../lib/api';
-import Cloudy from '../svg/cloudy-day-1.svg';
-
 
 const REFRESH_TIME = 1000 * 60;
 
