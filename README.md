@@ -28,3 +28,34 @@ export default {
 - Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
 - Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
 - Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+
+## Docker
+
+Build the app image:
+
+```sh
+docker build -t weather-app .
+```
+
+Star the container:
+```sh
+docker run --name weather --rm -d -p 8089:80 weather-app
+```
+
+Stop the container:
+
+```sh
+docker stop weather
+```
+
+Access to docker container shell:
+
+```sh
+docker exec -it weather bash
+```
+
+Show the container logs:
+
+```sh
+docker container logs weather -f
+```
