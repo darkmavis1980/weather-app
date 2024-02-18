@@ -3,19 +3,13 @@ import useSWR from 'swr';
 import { api } from '../lib/api';
 import Cloudy from '../svg/cloudy-day-1.svg';
 
-
 const REFRESH_TIME = 1000 * 60;
 
 const fetcher = (url: string) => api.get(url).then(({data}) => data);
 
-interface Props {
-    room: string;
-}
+const Forecast = () => {
 
-const Temperature = (props: Props) => {
-    const { room = '1' } = props;
-
-    const { data: temperatures } = useSWR(`/rooms/${room}/current`, fetcher, {
+    const { data: temperatures } = useSWR(`/forecast`, fetcher, {
         suspense: true,
         refreshInterval: REFRESH_TIME,
     });
@@ -30,18 +24,15 @@ const Temperature = (props: Props) => {
     
     function tick() {
         const date = new Date();
-        // const dateFormat = dayjs(date).format('DDTHH MM YYYY');
         setMyTime(date);
     }
 
     return (
         <>
-            <h1>Indoor: {temperatures && Math.round(temperatures.current.temperature)}&deg;</h1>
-            <h2>Room: {temperatures && temperatures.label }</h2>
-            <h3>Humidity: {temperatures.current.humidity}%</h3>
-            <span>{myTime.toDateString()}</span>
+            <img src={Cloudy} alt="Weather" width="200" />
+            <h2>Outdoor: {temperatures && Math.round(temperatures.temperature)}&deg;</h2>
         </>
     )
 }
 
-export default Temperature;
+export default Forecast;
