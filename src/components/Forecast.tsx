@@ -6,7 +6,7 @@ import { ICON_MAP } from '../lib/config';
 const REFRESH_TIME = 1000 * 60;
 
 interface Forecast {
-  icon: string;
+  icon_detailed: string;
   temperature: number;
 }
 
@@ -33,7 +33,7 @@ const Forecast = () => {
 
   return (
     <>
-      {temperatures && (<img src={ICON_MAP[temperatures.icon]} alt="Weather" width="200" />)}
+      {temperatures && (<img className="weather-icon" src={ICON_MAP[temperatures.icon_detailed]} alt="Weather" width="200" />)}
       <h2>Outdoor: {temperatures && Math.round(temperatures.temperature)}&deg;</h2>
     </>
   )
