@@ -1,21 +1,20 @@
-import { Suspense } from 'react';
-import { useSearchParams } from 'react-router-dom';
-import Temperature from './components/Temperature';
-import Forecast from './components/Forecast';
-import Loading from './components/Loading';
+
+import { Routes, Route } from "react-router-dom";
+import Home from './components/Home';
+import Layout from './Layout';
 import './App.css';
 
+
+
 const App = () => {
-  const [searchParams] = useSearchParams();
-
-  const room = searchParams.get('room') || '1'; 
-
   return (
     <>
-      <Suspense fallback={<Loading />}>
-        <Forecast />
-        <Temperature room={room} />
-      </Suspense>
+      <Routes>
+        <Route path="/" element={<Layout />}>
+          <Route index element={<Home />} />
+          <Route path="room/:roomId" element={<Home />} />
+        </Route>
+      </Routes>
     </>
   )
 }

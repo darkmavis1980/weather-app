@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr';
-import { api } from '../lib/api';
+import { fetcher } from '../lib/api';
 import { ICON_MAP } from '../lib/config';
 
 const REFRESH_TIME = 1000 * 60;
@@ -10,10 +10,8 @@ interface Forecast {
   temperature: number;
 }
 
-const fetcher = (url: string) => api.get<Forecast>(url).then(({data}) => data);
-
 const Forecast = () => {
-  const { data: temperatures } = useSWR(`/forecast`, fetcher, {
+  const { data: temperatures } = useSWR(`/forecast`, fetcher<Forecast>, {
     suspense: true,
     refreshInterval: REFRESH_TIME,
   });
