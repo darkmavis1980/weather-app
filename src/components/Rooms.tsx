@@ -14,7 +14,7 @@ const Rooms = () => {
   });
   
   return (<div role='group' className="rooms-switcher">
-    {rooms && rooms.map(room => (<a href={`/room/${room.id}`}>{room.label}</a>))}
+    {rooms && rooms.map(room => (<a href={`/room/${room.id}`} key={room.id}>{room.label}</a>))}
   </div>);
 }
 
