@@ -1,0 +1,7 @@
+services:
+  weather-app:
+    container_name: weather-app
+    build: .
+    ports:
+      - "8089:80"
+    restart: unless-stopped

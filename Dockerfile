@@ -7,7 +7,7 @@ COPY . /app/
 RUN npm install
 RUN npm run build
 
-FROM nginx
+FROM nginx AS nginx
 
 COPY .docker/nginx-vhosts.conf /etc/nginx/nginx.conf
 
